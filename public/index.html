@@ -15,41 +15,110 @@
   <script type="text/jsx">
   /** @jsx React.DOM */
 
+
+  // defining the component 
   var MessageBox = React.createClass({
 
+    // handling login button event 
+    handleLogin: function (e) {
+      var username = this.refs.username.getDOMNode().value;
+      var password = this.refs.password.getDOMNode().value;
+
+      // this.setState({
+      //   userName: username
+      // });
+
+      // console.log(this);
+      // console.log(username);
+      // console.log(password);
+    },
+
+    // define the state values 
     getInitialState: function () {
+
+      // TODO: change titleMessage based on username
       return {
         isVisible: true,
-        titleMessage: 'Welcome!'
+        messages: [
+                     "Welcome",
+                     "whatsup man",
+                     "hello dear",
+                     "woolacha"
+                  ],
+        // userName: "ha"
       }
     },
 
     render: function() {
-
       var inlineStyle = {
         display: this.state.isVisible ? 'block' : 'none'
       };
-
+  
+      // var subMessage = "Its not good to see you";
+      var messages = this.state.messages.map(function(message) {
+        return <SessionBegin message={message}/>;
+      })
+      // returning node 
       return (
         <div className="container jumbotron" style={inlineStyle}>
-          <h2>{ this.state.titleMessage }</h2>
-          <SubMessage />
+        <h2>Login</h2>
+        <h3>"Welcome"</h3>
+          <input ref="username" type = "text"/>
+          <input ref="password" type = "password"/>
+          <button className="btn btn-primary" onClick={this.handleLogin}>Login</button>
+          <SessionBegin message = {messages} />
+          <SessionExpire />
         </div>
       );
     }
   });
+  
+  // <h2>{ this.state.titleMessage }</h2>
+  // <h2>{ this.props.titleMessage }</h2>
 
-  var SubMessage = React.createClass({
+
+  // defining the sub-component to show when the session begins
+  var SessionBegin = React.createClass({
+
+    // validation 
+    propTypes: function() {
+      message: React.PropTypes.string.isRequired
+    },
+
+    // setting default prop
+    getDefaultProps: function() {
+      return {
+        message: "Its good to see you"
+      }
+    },
+
     render: function() {
       return (
-        <div>Your session expires in:</div>
+        <div>{this.props.message}</div>
+      );
+    }
+  });
+
+  // defining sub-component to show when the session expires
+  var SessionExpire = React.createClass({
+    // validation 
+    render: function() {
+      return (
+        <div>haha</div>
       );
     }
   });
 
   var reactComponent = React.render(
-    <MessageBox />,
-    document.getElementById('app')
+    // render the component 
+    // <MessageBox titleMessage={message} />,
+    <MessageBox/>,
+    // defining the container for the component
+    document.getElementById('app'),
+    // function invoked after rendering is complete 
+    function() {
+      console.log("rendering completed")
+    }
   );
 
   </script>
