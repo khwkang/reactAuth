@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset=utf-8>
+  <title>State</title>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+</head>
+<body>
+
+  <!-- container node -->
+  <div id="app"></div>
+
+  <script src="../bower_components/react/react.min.js"></script>
+  <script src="../bower_components/react/JSXTransformer.js"></script>
+  <script type="text/jsx">
+  /** @jsx React.DOM */
+
+  var MessageBox = React.createClass({
+
+    getInitialState: function () {
+      return {
+        isVisible: true,
+        titleMessage: 'Welcome!'
+      }
+    },
+
+    render: function() {
+
+      var inlineStyle = {
+        display: this.state.isVisible ? 'block' : 'none'
+      };
+
+      return (
+        <div className="container jumbotron" style={inlineStyle}>
+          <h2>{ this.state.titleMessage }</h2>
+          <SubMessage />
+        </div>
+      );
+    }
+  });
+
+  var SubMessage = React.createClass({
+    render: function() {
+      return (
+        <div>Your session expires in:</div>
+      );
+    }
+  });
+
+  var reactComponent = React.render(
+    <MessageBox />,
+    document.getElementById('app')
+  );
+
+  </script>
+</body>
+</html>
