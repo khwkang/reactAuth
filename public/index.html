@@ -19,19 +19,6 @@
   
     /** @jsx React.DOM */
 
-      // authenticate via ajax call
-      var loadProfile = function(username, password){
-        // ajax promise
-        $.ajax({
-          method: "POST",
-          url: "/login",
-          data: { username: username, password: password }
-        })
-          .done(function( msg ) {
-            console.log( "hehehe" );
-          });
-      };
-
       // defining the component 
       var AppComponent = React.createClass({
 
@@ -39,14 +26,22 @@
         handleLogin: function (e) {
           var username = this.refs.username.getDOMNode().value;
           var password = this.refs.password.getDOMNode().value;
-          
-          loadProfile(username, password);
-
-          // TODO: trigger only if user is authenticated
-          this.setState({
-            authenticated:true,
-            sessionStarted: "00-00-0000 00:00",
-            sessionExpires: "00-00-1111 11:11"
+          var that = this;
+        
+          // authenticate via ajax call
+          $.ajax({
+            method: "POST",
+            url: "/login",
+            data: { username: username, password: password }
+          })
+            .done(function(user) {
+              var date = new Date();
+              that.setState({
+              username: user,
+              authenticated: true,
+              sessionStarted: date.toUTCString(),
+              sessionExpires: new Date(date.getTime() + 6000000).toUTCString()
+            });
           });
         },
 
@@ -58,20 +53,34 @@
           });
         },
 
-
         // define the state values 
         getInitialState: function () {
           // TODO: change titleMessage based on username
           return {
             username: "Ken",
-            authenticated: false,
+            authenticated: null,
           }
+        },
+
+        componentWillMount: function() {
+          var that = this;
+          function checkAuth () {
+            $.ajax({
+              method: "GET",
+              url: "/auth",
+            })
+            .done(function(user) {
+              that.setState({
+                authenticated: true,
+              })
+            });
+          }
+          checkAuth();
         },
 
         render: function() {
           // check if user is authenticated
           // var authenticated = true;
-
           var username = this.state.username;
           var authenticated = this.state.authenticated;
           var sessionStarted = this.state.sessionStarted;
@@ -93,13 +102,12 @@
             return (
               <div className="container jumbotron">
                 <Dashboard message = {username} sessionStarted = {sessionStarted} sessionExpires = {sessionExpires}/>
-                <button className="btn btn-primary" onClick={this.handleLogout}>Logout</button>
+                <button className="btn btn-primary auth-button" onClick={this.handleLogout}>Logout</button>
               </div>
             );
           }
         }
       });
-
 
       // defining the sub-component to show when the session begins
       var Dashboard = React.createClass({
@@ -110,10 +118,6 @@
         // setting default prop
         getDefaultProps: function() {
           return {
-            // TODO: retrieve username from DB and update the message
-            message: "Welcome" + "userName",
-            sessionStarted: "haha",
-            sessionExpires: "hoho"
           }
         },
 
