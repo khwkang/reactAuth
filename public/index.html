@@ -4,12 +4,13 @@
   <meta charset=utf-8>
   <title>State</title>
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/main.css" />
 </head>
 <body>
 
   <!-- container node -->
   <div id="app"></div>
-
+  
   <script src="/bower_components/react/react.min.js"></script>
   <script src="/bower_components/react/JSXTransformer.js"></script>
   <script src="/bower_components/jquery/dist/jquery.min.js"></script>
@@ -21,7 +22,6 @@
     // ajax promise
   }
 
-
   // defining the component 
   var AppComponent = React.createClass({
 
@@ -30,99 +30,93 @@
       var username = this.refs.username.getDOMNode().value;
       var password = this.refs.password.getDOMNode().value;
 
-      // this.setState({
-      //   userName: username
-      // });
+      console.log(username);
+      this.setState({
+        authenticated:true,
+        sessionStarted: "00-00-0000 00:00",
+        sessionExpires: "00-00-1111 11:11"
+      });
+    },
 
-      // console.log(this);
-      // console.log(username);
-      // console.log(password);
+    handleLogout: function(e) {
+      console.log("logged out!!!");
+      this.setState({
+        authenticated: false,
+        logoutMessage: "You have sucessfully logged out!"
+      });
     },
 
     // define the state values 
     getInitialState: function () {
-
       // TODO: change titleMessage based on username
       return {
-        isVisible: true,
-        message: "hello world"
-        // userName: "ha"
+        username: "Ken",
+        authenticated: false,
       }
     },
 
     render: function() {
-      var inlineStyle = {
-        display: this.state.isVisible ? 'block' : 'none'
-      };
-      
       // check if user is authenticated
-      var authenticated = true;
+      // var authenticated = true;
 
-      var message = this.state.message;
+      var username = this.state.username;
+      var authenticated = this.state.authenticated;
+      var sessionStarted = this.state.sessionStarted;
+      var sessionExpires = this.state.sessionExpires;
+      var logoutMessage = this.state.logoutMessage;
 
       // returning node 
-      if (authenticated) {
+      if (!authenticated) {
         return (
-          <div className="container jumbotron" style={inlineStyle}>
+          <div className="container jumbotron">
+          <h2>{logoutMessage}</h2>
           <h2>Login</h2>
-            <input ref="username" type = "text"/>
-            <input ref="password" type = "password"/>
+            username: <input className="form-control log-in-form" ref="username" type = "text"/>
+            password: <input className="form-control log-in-form" ref="password" type = "password"/><br />
             <button className="btn btn-primary" onClick={this.handleLogin}>Login</button>
-            <Dashboard message = {message} />
-            <Logout />
           </div>
         );
       } else {
         return (
-          <div className="container jumbotron" style={inlineStyle}>
-          <h2>Dashboard</h2>
-            <Dashboard message = {message} />
+          <div className="container jumbotron">
+            <Dashboard message = {username} sessionStarted = {sessionStarted} sessionExpires = {sessionExpires}/>
+            <button className="btn btn-primary" onClick={this.handleLogout}>Logout</button>
           </div>
         );
       }
-
     }
   });
-  
-  // <h2>{ this.state.titleMessage }</h2>
-  // <h2>{ this.props.titleMessage }</h2>
 
 
   // defining the sub-component to show when the session begins
   var Dashboard = React.createClass({
-
     // validation 
     propTypes: function() {
       message: React.PropTypes.string.isRequired
     },
-
     // setting default prop
     getDefaultProps: function() {
       return {
-        message: "Its good to see you"
+        // TODO: retrieve username from DB and update the message
+        message: "Welcome" + "userName",
+        sessionStarted: "haha",
+        sessionExpires: "hoho"
       }
     },
 
     render: function() {
       return (
-        <div>{this.props.message}</div>
+        <div>
+          <h2>Welcome {this.props.message}!</h2>
+          <div> Your session started: {this.props.sessionStarted} </div>
+          <div> Your session expires: {this.props.sessionExpires} </div>
+        </div>
       );
     }
   });
 
-  // defining sub-component to show when the session expires
-  var Logout = React.createClass({
-    // validation 
-    render: function() {
-      return (
-        <div>You have succssfuly logged out!</div>
-      );
-    }
-  });
-
+  // render the component 
   var reactComponent = React.render(
-    // render the component 
-    // <AppComponent titleMessage={message} />,
     <AppComponent/>,
     // defining the container for the component
     document.getElementById('app'),

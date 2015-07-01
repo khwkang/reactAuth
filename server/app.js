@@ -1,7 +1,12 @@
+
+// Dependencies
 var express = require('express');
 var path = require('path');
 var session = require('express-session');
 var r = require('rethinkdb');
+
+//routes
+var auth = require('./routes/auth');
 
 
 var app = express();
