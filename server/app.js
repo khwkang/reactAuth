@@ -48,7 +48,6 @@ var User = thinky.createModel("User", {
 
 // serialize user instances to the session
 passport.serializeUser(function(user, done) {
-  console.log("SS:USER:", user)
   done(null, user.username);
 });
 
@@ -76,7 +75,7 @@ passport.use(new LocalStrategy(function(username, password, done) {
     // query the user from the database
   User.filter({username: username}).run().then(function(user) {
     console.log("#USER#", user);
-    
+
     // if the user does not exist
     if (user.length <= 0) {
       console.log("#### NO USER")
@@ -101,7 +100,7 @@ passport.use(new LocalStrategy(function(username, password, done) {
   });
 }));
 
-// setup route for login
+// login route 
 app.post('/login', loginPost);
 
 function loginPost(req, res, next) {
@@ -130,20 +129,28 @@ function loginPost(req, res, next) {
 };
 
 
+// logout route
+app.get('/logout', function(req, res) {
+  req.session.destroy(function (err) {
+    res.redirect('/'); 
+  });
+});
 
-app.get('/auth', authCheck); 
 
-function authCheck(req, res, next) {
-  if (req.user) {
-    console.log("yaaaaaaa");
-    res.end()
-    // next();
-  } else {
-    console.log("nooooooo");
-    res.end()
-    // res.redirect('/');
-  }
-}
+// check user's authentication status
+// app.get('/auth', authCheck); 
+
+// function authCheck(req, res, next) {
+//   if (req.user) {
+//     console.log("yaaaaaaa");
+//     res.end()
+//     // next();
+//   } else {
+//     console.log("nooooooo");
+//     res.end()
+//     // res.redirect('/');
+//   }
+// }
 
 // function that hashes provided string 
 function createHash (password) {
