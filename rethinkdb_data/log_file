@@ -1,0 +1,15 @@
+2015-06-30T16:36:19.347679000 0.060584s notice: Recursively removing directory /Users/Ken/Desktop/reactAuth/reactAuth/rethinkdb_data/tmp
+2015-06-30T16:36:19.349464000 0.062372s notice: Initializing directory /Users/Ken/Desktop/reactAuth/reactAuth/rethinkdb_data
+2015-06-30T16:36:19.349560000 0.062463s info: Creating a default database for your convenience. (This is because you ran 'rethinkdb' without 'create', 'serve', or '--join', and the directory '/Users/Ken/Desktop/reactAuth/reactAuth/rethinkdb_data' did not already exist or is empty.)
+2015-06-30T16:36:19.349646000 0.062549s notice: Running rethinkdb 2.0.3 (CLANG 4.2 (clang-425.0.28))...
+2015-06-30T16:36:19.359762000 0.072667s notice: Running on Darwin 14.0.0 x86_64
+2015-06-30T16:36:19.359824000 0.072727s notice: Loading data from directory /Users/Ken/Desktop/reactAuth/reactAuth/rethinkdb_data
+2015-06-30T16:36:19.620876000 0.333779s info: Automatically using cache size of 100 MB
+2015-06-30T16:36:19.620888000 0.333791s warn: Cache size is larger than available memory.
+2015-06-30T16:36:19.620895000 0.333798s warn: Cache size is very low and may impact performance.
+2015-06-30T16:36:19.624721000 0.337624s notice: Listening for intracluster connections on port 29015
+2015-06-30T16:36:19.627249000 0.340152s notice: Listening for client driver connections on port 28015
+2015-06-30T16:36:19.627354000 0.340257s notice: Listening for administrative HTTP connections on port 8080
+2015-06-30T16:36:19.627362000 0.340265s notice: Listening on addresses: 127.0.0.1, ::1
+2015-06-30T16:36:19.627366000 0.340269s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2015-06-30T16:36:19.627370000 0.340273s notice: Server ready, "Kens_Air_attlocal_net_bq6" 07af663c-1c30-4604-87c0-2bfe35e80aae

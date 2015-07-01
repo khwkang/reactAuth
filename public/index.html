@@ -10,14 +10,20 @@
   <!-- container node -->
   <div id="app"></div>
 
-  <script src="../bower_components/react/react.min.js"></script>
-  <script src="../bower_components/react/JSXTransformer.js"></script>
+  <script src="/bower_components/react/react.min.js"></script>
+  <script src="/bower_components/react/JSXTransformer.js"></script>
+  <script src="/bower_components/jquery/dist/jquery.min.js"></script>
   <script type="text/jsx">
   /** @jsx React.DOM */
 
+  // authenticate via ajax call
+  var loadProfile = function(){
+    // ajax promise
+  }
+
 
   // defining the component 
-  var MessageBox = React.createClass({
+  var AppComponent = React.createClass({
 
     // handling login button event 
     handleLogin: function (e) {
@@ -39,12 +45,7 @@
       // TODO: change titleMessage based on username
       return {
         isVisible: true,
-        messages: [
-                     "Welcome",
-                     "whatsup man",
-                     "hello dear",
-                     "woolacha"
-                  ],
+        message: "hello world"
         // userName: "ha"
       }
     },
@@ -53,23 +54,33 @@
       var inlineStyle = {
         display: this.state.isVisible ? 'block' : 'none'
       };
-  
-      // var subMessage = "Its not good to see you";
-      var messages = this.state.messages.map(function(message) {
-        return <SessionBegin message={message}/>;
-      })
+      
+      // check if user is authenticated
+      var authenticated = true;
+
+      var message = this.state.message;
+
       // returning node 
-      return (
-        <div className="container jumbotron" style={inlineStyle}>
-        <h2>Login</h2>
-        <h3>"Welcome"</h3>
-          <input ref="username" type = "text"/>
-          <input ref="password" type = "password"/>
-          <button className="btn btn-primary" onClick={this.handleLogin}>Login</button>
-          <SessionBegin message = {messages} />
-          <SessionExpire />
-        </div>
-      );
+      if (authenticated) {
+        return (
+          <div className="container jumbotron" style={inlineStyle}>
+          <h2>Login</h2>
+            <input ref="username" type = "text"/>
+            <input ref="password" type = "password"/>
+            <button className="btn btn-primary" onClick={this.handleLogin}>Login</button>
+            <Dashboard message = {message} />
+            <Logout />
+          </div>
+        );
+      } else {
+        return (
+          <div className="container jumbotron" style={inlineStyle}>
+          <h2>Dashboard</h2>
+            <Dashboard message = {message} />
+          </div>
+        );
+      }
+
     }
   });
   
@@ -78,7 +89,7 @@
 
 
   // defining the sub-component to show when the session begins
-  var SessionBegin = React.createClass({
+  var Dashboard = React.createClass({
 
     // validation 
     propTypes: function() {
@@ -100,19 +111,19 @@
   });
 
   // defining sub-component to show when the session expires
-  var SessionExpire = React.createClass({
+  var Logout = React.createClass({
     // validation 
     render: function() {
       return (
-        <div>haha</div>
+        <div>You have succssfuly logged out!</div>
       );
     }
   });
 
   var reactComponent = React.render(
     // render the component 
-    // <MessageBox titleMessage={message} />,
-    <MessageBox/>,
+    // <AppComponent titleMessage={message} />,
+    <AppComponent/>,
     // defining the container for the component
     document.getElementById('app'),
     // function invoked after rendering is complete 
