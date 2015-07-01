@@ -22,8 +22,8 @@
       // defining the component 
       var AppComponent = React.createClass({
 
-        // handling login button event 
-        handleLogin: function (e) {
+        // handling login event to authenticate user
+        handleLogin: function() {
           var username = this.refs.username.getDOMNode().value;
           var password = this.refs.password.getDOMNode().value;
           var that = this;
@@ -36,21 +36,35 @@
           })
             .done(function(user) {
               var date = new Date();
+              // change the component's state to change view
               that.setState({
-              username: user,
-              authenticated: true,
-              sessionStarted: date.toUTCString(),
-              sessionExpires: new Date(date.getTime() + 6000000).toUTCString()
-            });
-          });
+                username: user,
+                authenticated: true,
+                sessionStarted: date.toUTCString(),
+                sessionExpires: new Date(date.getTime() + 6000000).toUTCString()
+              });
+            })
+            .fail(function() {
+              that.setState({
+                failMessage: "Login information does not match. Please try again."
+              });
+            })
         },
 
-        handleLogout: function(e) {
-          console.log("logged out!!!");
-          this.setState({
-            authenticated: false,
-            logoutMessage: "You have sucessfully logged out!"
-          });
+        // handling logout event
+        handleLogout: function() {
+          var that = this;
+          $.ajax({
+            method: "GET",
+            url: "/logout"
+          })  
+            .done(function(user) {
+              that.setState({
+                authenticated: false,
+                failMessage:"",
+                logoutMessage: "You have sucessfully logged out!"
+              });
+            });
         },
 
         // define the state values 
@@ -62,32 +76,31 @@
           }
         },
 
-        componentWillMount: function() {
-          var that = this;
-          function checkAuth () {
-            $.ajax({
-              method: "GET",
-              url: "/auth",
-            })
-            .done(function(user) {
-              that.setState({
-                authenticated: true,
-              })
-            });
-          }
-          checkAuth();
-        },
+        // componentWillMount: function() {
+        //   // var that = this;
+        //   // function checkAuth () {
+        //   //   $.ajax({
+        //   //     method: "GET",
+        //   //     url: "/auth",
+        //   //   })
+        //   //   .done(function(user) {
+        //   //     that.setState({
+        //   //       authenticated: true,
+        //   //     })
+        //   //   });
+        //   // }
+        //   // checkAuth();
+        // },
 
         render: function() {
           // check if user is authenticated
-          // var authenticated = true;
           var username = this.state.username;
           var authenticated = this.state.authenticated;
           var sessionStarted = this.state.sessionStarted;
           var sessionExpires = this.state.sessionExpires;
+          var failMessage = this.state.failMessage;
           var logoutMessage = this.state.logoutMessage;
 
-          // returning node 
           if (!authenticated) {
             return (
               <div className="container jumbotron">
@@ -95,6 +108,7 @@
               <h2>Login</h2>
                 username: <input className="form-control log-in-form" ref="username" type = "text"/>
                 password: <input className="form-control log-in-form" ref="password" type = "password"/><br />
+                <span>{failMessage}</span>
                 <button className="btn btn-primary auth-button" onClick={this.handleLogin}>Login</button> 
               </div>
             );
@@ -114,11 +128,6 @@
         // validation 
         propTypes: function() {
           message: React.PropTypes.string.isRequired
-        },
-        // setting default prop
-        getDefaultProps: function() {
-          return {
-          }
         },
 
         render: function() {
