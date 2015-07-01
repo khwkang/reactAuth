@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-var passport = require('passport');
+var express      = require('express');
+var router       = express.Router();
+var passport     = require('passport');
 var path         = require('path');
 // var DBQuery = require('../utils/dbQueries.js')
 // var db = require('../app/config.js');

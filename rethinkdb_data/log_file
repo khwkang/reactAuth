@@ -13,3 +13,107 @@
 2015-06-30T16:36:19.627362000 0.340265s notice: Listening on addresses: 127.0.0.1, ::1
 2015-06-30T16:36:19.627366000 0.340269s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
 2015-06-30T16:36:19.627370000 0.340273s notice: Server ready, "Kens_Air_attlocal_net_bq6" 07af663c-1c30-4604-87c0-2bfe35e80aae
+2015-06-30T21:16:50.749699000 16831.663857s notice: Server got SIGINT from pid 201, uid 501; shutting down...
+2015-06-30T21:16:50.757122000 16831.671277s notice: Shutting down client connections...
+2015-06-30T21:16:50.765983000 16831.680139s notice: All client connections closed.
+2015-06-30T21:16:50.766000000 16831.680155s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2015-06-30T21:16:50.784763000 16831.698919s notice: Storage engine shut down.
+2015-06-30T21:16:53.082994000 0.045722s notice: Running rethinkdb 2.0.3 (CLANG 4.2 (clang-425.0.28))...
+2015-06-30T21:16:53.094386000 0.057108s notice: Running on Darwin 14.0.0 x86_64
+2015-06-30T21:16:53.094604000 0.057325s notice: Loading data from directory /Users/Ken/Desktop/reactAuth/reactAuth/rethinkdb_data
+2015-06-30T21:16:53.158122000 0.120843s info: Automatically using cache size of 100 MB
+2015-06-30T21:16:53.158143000 0.120863s warn: Cache size is larger than available memory.
+2015-06-30T21:16:53.158151000 0.120871s warn: Cache size is very low and may impact performance.
+2015-06-30T21:16:53.159254000 0.121975s notice: Listening for intracluster connections on port 29015
+2015-06-30T21:16:53.160911000 0.123631s notice: Listening for client driver connections on port 28015
+2015-06-30T21:16:53.161058000 0.123788s notice: Listening for administrative HTTP connections on port 8080
+2015-06-30T21:16:53.161072000 0.123792s notice: Listening on addresses: 127.0.0.1, ::1
+2015-06-30T21:16:53.161078000 0.123798s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2015-06-30T21:16:53.161082000 0.123802s notice: Server ready, "Kens_Air_attlocal_net_bq6" 07af663c-1c30-4604-87c0-2bfe35e80aae
+2015-06-30T21:20:30.644451000 217.595390s notice: Server got SIGINT from pid 201, uid 501; shutting down...
+2015-06-30T21:20:30.644772000 217.595711s notice: Shutting down client connections...
+2015-06-30T21:20:30.653131000 217.604070s notice: All client connections closed.
+2015-06-30T21:20:30.653138000 217.604077s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2015-06-30T21:20:30.653695000 217.604633s notice: Storage engine shut down.
+2015-06-30T21:20:36.981720000 0.015363s notice: Running rethinkdb 2.0.3 (CLANG 4.2 (clang-425.0.28))...
+2015-06-30T21:20:36.990281000 0.023918s notice: Running on Darwin 14.0.0 x86_64
+2015-06-30T21:20:36.990347000 0.023981s notice: Loading data from directory /Users/Ken/Desktop/reactAuth/reactAuth/rethinkdb_data
+2015-06-30T21:20:37.050540000 0.084175s info: Automatically using cache size of 100 MB
+2015-06-30T21:20:37.050554000 0.084188s warn: Cache size is larger than available memory.
+2015-06-30T21:20:37.050561000 0.084196s warn: Cache size is very low and may impact performance.
+2015-06-30T21:20:37.053305000 0.086940s notice: Listening for intracluster connections on port 29015
+2015-06-30T21:20:37.055853000 0.089490s notice: Listening for client driver connections on port 28015
+2015-06-30T21:20:37.056001000 0.089635s notice: Listening for administrative HTTP connections on port 8080
+2015-06-30T21:20:37.058621000 0.092256s notice: Listening on addresses: 127.0.0.1, 192.168.1.135, ::1, 2602:304:791d:6e0::45, 2602:304:791d:6e0:4ad7:5ff:fed8:9, 2602:304:791d:6e0:8d80:f4bc:7fa4:80b2, fe80::1%1, fe80::4ad7:5ff:fed8:9%4, fe80::ec4a:baff:fe4f:87a4%7
+2015-06-30T21:20:37.058638000 0.092273s notice: Server ready, "Kens_Air_attlocal_net_bq6" 07af663c-1c30-4604-87c0-2bfe35e80aae
+2015-06-30T21:20:58.201044000 21.233586s notice: Server got SIGINT from pid 201, uid 501; shutting down...
+2015-06-30T21:20:58.201224000 21.233766s notice: Shutting down client connections...
+2015-06-30T21:20:58.201614000 21.234156s notice: All client connections closed.
+2015-06-30T21:20:58.201636000 21.234178s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2015-06-30T21:20:58.202245000 21.234787s notice: Storage engine shut down.
+2015-06-30T21:20:59.851439000 0.026872s notice: Running rethinkdb 2.0.3 (CLANG 4.2 (clang-425.0.28))...
+2015-06-30T21:20:59.857420000 0.032850s notice: Running on Darwin 14.0.0 x86_64
+2015-06-30T21:20:59.857474000 0.032901s notice: Loading data from directory /Users/Ken/Desktop/reactAuth/reactAuth/rethinkdb_data
+2015-06-30T21:20:59.969643000 0.145071s info: Automatically using cache size of 100 MB
+2015-06-30T21:20:59.969654000 0.145082s warn: Cache size is larger than available memory.
+2015-06-30T21:20:59.969660000 0.145088s warn: Cache size is very low and may impact performance.
+2015-06-30T21:20:59.971045000 0.146473s notice: Listening for intracluster connections on port 29015
+2015-06-30T21:20:59.974770000 0.150197s notice: Listening for client driver connections on port 28015
+2015-06-30T21:20:59.974926000 0.150354s notice: Listening for administrative HTTP connections on port 8080
+2015-06-30T21:20:59.974932000 0.150359s notice: Listening on addresses: 127.0.0.1, ::1
+2015-06-30T21:20:59.974936000 0.150364s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2015-06-30T21:20:59.974950000 0.150378s notice: Server ready, "Kens_Air_attlocal_net_bq6" 07af663c-1c30-4604-87c0-2bfe35e80aae
+2015-06-30T21:33:32.337619000 752.473174s notice: Server got SIGINT from pid 201, uid 501; shutting down...
+2015-06-30T21:33:32.342040000 752.477593s notice: Shutting down client connections...
+2015-06-30T21:33:32.346706000 752.482259s notice: All client connections closed.
+2015-06-30T21:33:32.346721000 752.482273s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2015-06-30T21:33:32.361700000 752.497253s notice: Storage engine shut down.
+2015-06-30T21:33:33.422753000 0.039916s notice: Running rethinkdb 2.0.3 (CLANG 4.2 (clang-425.0.28))...
+2015-06-30T21:33:33.438017000 0.055176s notice: Running on Darwin 14.0.0 x86_64
+2015-06-30T21:33:33.438125000 0.055281s notice: Loading data from directory /Users/Ken/Desktop/reactAuth/reactAuth/rethinkdb_data
+2015-06-30T21:33:33.491876000 0.109033s info: Automatically using cache size of 100 MB
+2015-06-30T21:33:33.491886000 0.109042s warn: Cache size is larger than available memory.
+2015-06-30T21:33:33.491893000 0.109049s warn: Cache size is very low and may impact performance.
+2015-06-30T21:33:33.493480000 0.110637s notice: Listening for intracluster connections on port 29015
+2015-06-30T21:33:33.494999000 0.112155s notice: Listening for client driver connections on port 28015
+2015-06-30T21:33:33.495092000 0.112248s notice: Listening for administrative HTTP connections on port 8080
+2015-06-30T21:33:33.495097000 0.112253s notice: Listening on addresses: 127.0.0.1, ::1
+2015-06-30T21:33:33.495100000 0.112256s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2015-06-30T21:33:33.495103000 0.112259s notice: Server ready, "Kens_Air_attlocal_net_bq6" 07af663c-1c30-4604-87c0-2bfe35e80aae
+2015-06-30T21:42:29.094131000 535.683158s notice: Server got SIGINT from pid 201, uid 501; shutting down...
+2015-06-30T21:42:29.095302000 535.684329s notice: Shutting down client connections...
+2015-06-30T21:42:29.096042000 535.685068s notice: All client connections closed.
+2015-06-30T21:42:29.096060000 535.685086s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2015-06-30T21:42:29.114501000 535.703528s notice: Storage engine shut down.
+2015-06-30T21:42:31.356574000 0.021843s notice: Running rethinkdb 2.0.3 (CLANG 4.2 (clang-425.0.28))...
+2015-06-30T21:42:31.367919000 0.033184s notice: Running on Darwin 14.0.0 x86_64
+2015-06-30T21:42:31.368006000 0.033268s notice: Loading data from directory /Users/Ken/Desktop/reactAuth/reactAuth/rethinkdb_data
+2015-06-30T21:42:31.422702000 0.087964s info: Automatically using cache size of 100 MB
+2015-06-30T21:42:31.422713000 0.087975s warn: Cache size is larger than available memory.
+2015-06-30T21:42:31.422719000 0.087981s warn: Cache size is very low and may impact performance.
+2015-06-30T21:42:31.423812000 0.089074s notice: Listening for intracluster connections on port 29015
+2015-06-30T21:42:31.425832000 0.091094s notice: Listening for client driver connections on port 28015
+2015-06-30T21:42:31.425991000 0.091253s notice: Listening for administrative HTTP connections on port 8080
+2015-06-30T21:42:31.425998000 0.091259s notice: Listening on addresses: 127.0.0.1, ::1
+2015-06-30T21:42:31.425999000 0.091260s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2015-06-30T21:42:31.426002000 0.091264s notice: Server ready, "Kens_Air_attlocal_net_bq6" 07af663c-1c30-4604-87c0-2bfe35e80aae
+2015-06-30T21:56:14.887001000 823.508912s notice: Server got SIGINT from pid 201, uid 501; shutting down...
+2015-06-30T21:56:14.892987000 823.514894s notice: Shutting down client connections...
+2015-06-30T21:56:14.894966000 823.516874s notice: All client connections closed.
+2015-06-30T21:56:14.894987000 823.516894s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2015-06-30T21:56:14.931840000 823.553748s notice: Storage engine shut down.
+2015-07-01T01:20:12.992421000 0.650804s notice: Running rethinkdb 2.0.3 (CLANG 4.2 (clang-425.0.28))...
+2015-07-01T01:20:13.009862000 0.668239s notice: Running on Darwin 14.0.0 x86_64
+2015-07-01T01:20:13.009946000 0.668321s notice: Loading data from directory /Users/Ken/Desktop/reactAuth/reactAuth/rethinkdb_data
+2015-07-01T01:20:13.069453000 0.727829s info: Automatically using cache size of 100 MB
+2015-07-01T01:20:13.069471000 0.727846s warn: Cache size is larger than available memory.
+2015-07-01T01:20:13.069483000 0.727858s warn: Cache size is very low and may impact performance.
+2015-07-01T01:20:13.073104000 0.731479s notice: Listening for intracluster connections on port 29015
+2015-07-01T01:20:13.076825000 0.735201s notice: Listening for client driver connections on port 28015
+2015-07-01T01:20:13.076960000 0.735335s notice: Listening for administrative HTTP connections on port 8080
+2015-07-01T01:20:13.076968000 0.735343s notice: Listening on addresses: 127.0.0.1, ::1
+2015-07-01T01:20:13.076973000 0.735348s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2015-07-01T01:20:13.076978000 0.735353s notice: Server ready, "Kens_Air_attlocal_net_bq6" 07af663c-1c30-4604-87c0-2bfe35e80aae
+2015-07-01T01:40:52.080832000 1239.675115s notice: Removing file /Users/Ken/Desktop/reactAuth/reactAuth/rethinkdb_data/38d000b5-9045-4157-9d33-1b638dea48dd
+2015-07-01T01:40:52.080851000 1239.675133s notice: Removing file /Users/Ken/Desktop/reactAuth/reactAuth/rethinkdb_data/33eab2bf-a148-4892-8850-58872971f3ab
+2015-07-01T01:40:52.082532000 1239.676814s notice: Removing file /Users/Ken/Desktop/reactAuth/reactAuth/rethinkdb_data/ec73c5da-fb81-4681-a1ff-ed4f5d90c2ef
