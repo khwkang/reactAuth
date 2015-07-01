@@ -4,3 +4,8 @@
   width: 200px;
   margin: 5px 0;
 }
+
+.auth-button {
+  display: block;
+  margin: 10px 0;
+}

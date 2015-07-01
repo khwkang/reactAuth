@@ -1,131 +1,143 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset=utf-8>
-  <title>State</title>
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="css/main.css" />
-</head>
-<body>
+  <head>
+    <meta charset=utf-8>
+    <title>State</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body>
+    <!-- container node -->
+    <div id="app"></div>
 
-  <!-- container node -->
-  <div id="app"></div>
+    <!-- dependencies -->
+    <script src="/bower_components/react/react.min.js"></script>
+    <script src="/bower_components/react/JSXTransformer.js"></script>
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    
+    <script type="text/jsx">
   
-  <script src="/bower_components/react/react.min.js"></script>
-  <script src="/bower_components/react/JSXTransformer.js"></script>
-  <script src="/bower_components/jquery/dist/jquery.min.js"></script>
-  <script type="text/jsx">
-  /** @jsx React.DOM */
+    /** @jsx React.DOM */
 
-  // authenticate via ajax call
-  var loadProfile = function(){
-    // ajax promise
-  }
+      // authenticate via ajax call
+      var loadProfile = function(username, password){
+        // ajax promise
+        $.ajax({
+          method: "POST",
+          url: "/login",
+          data: { username: username, password: password }
+        })
+          .done(function( msg ) {
+            console.log( "hehehe" );
+          });
+      };
 
-  // defining the component 
-  var AppComponent = React.createClass({
+      // defining the component 
+      var AppComponent = React.createClass({
 
-    // handling login button event 
-    handleLogin: function (e) {
-      var username = this.refs.username.getDOMNode().value;
-      var password = this.refs.password.getDOMNode().value;
+        // handling login button event 
+        handleLogin: function (e) {
+          var username = this.refs.username.getDOMNode().value;
+          var password = this.refs.password.getDOMNode().value;
+          
+          loadProfile(username, password);
 
-      console.log(username);
-      this.setState({
-        authenticated:true,
-        sessionStarted: "00-00-0000 00:00",
-        sessionExpires: "00-00-1111 11:11"
+          // TODO: trigger only if user is authenticated
+          this.setState({
+            authenticated:true,
+            sessionStarted: "00-00-0000 00:00",
+            sessionExpires: "00-00-1111 11:11"
+          });
+        },
+
+        handleLogout: function(e) {
+          console.log("logged out!!!");
+          this.setState({
+            authenticated: false,
+            logoutMessage: "You have sucessfully logged out!"
+          });
+        },
+
+
+        // define the state values 
+        getInitialState: function () {
+          // TODO: change titleMessage based on username
+          return {
+            username: "Ken",
+            authenticated: false,
+          }
+        },
+
+        render: function() {
+          // check if user is authenticated
+          // var authenticated = true;
+
+          var username = this.state.username;
+          var authenticated = this.state.authenticated;
+          var sessionStarted = this.state.sessionStarted;
+          var sessionExpires = this.state.sessionExpires;
+          var logoutMessage = this.state.logoutMessage;
+
+          // returning node 
+          if (!authenticated) {
+            return (
+              <div className="container jumbotron">
+              <h2>{logoutMessage}</h2>
+              <h2>Login</h2>
+                username: <input className="form-control log-in-form" ref="username" type = "text"/>
+                password: <input className="form-control log-in-form" ref="password" type = "password"/><br />
+                <button className="btn btn-primary auth-button" onClick={this.handleLogin}>Login</button> 
+              </div>
+            );
+          } else {
+            return (
+              <div className="container jumbotron">
+                <Dashboard message = {username} sessionStarted = {sessionStarted} sessionExpires = {sessionExpires}/>
+                <button className="btn btn-primary" onClick={this.handleLogout}>Logout</button>
+              </div>
+            );
+          }
+        }
       });
-    },
 
-    handleLogout: function(e) {
-      console.log("logged out!!!");
-      this.setState({
-        authenticated: false,
-        logoutMessage: "You have sucessfully logged out!"
+
+      // defining the sub-component to show when the session begins
+      var Dashboard = React.createClass({
+        // validation 
+        propTypes: function() {
+          message: React.PropTypes.string.isRequired
+        },
+        // setting default prop
+        getDefaultProps: function() {
+          return {
+            // TODO: retrieve username from DB and update the message
+            message: "Welcome" + "userName",
+            sessionStarted: "haha",
+            sessionExpires: "hoho"
+          }
+        },
+
+        render: function() {
+          return (
+            <div>
+              <h2>Welcome {this.props.message}!</h2>
+              <div> Your session started: {this.props.sessionStarted} </div>
+              <div> Your session expires: {this.props.sessionExpires} </div>
+            </div>
+          );
+        }
       });
-    },
 
-    // define the state values 
-    getInitialState: function () {
-      // TODO: change titleMessage based on username
-      return {
-        username: "Ken",
-        authenticated: false,
-      }
-    },
-
-    render: function() {
-      // check if user is authenticated
-      // var authenticated = true;
-
-      var username = this.state.username;
-      var authenticated = this.state.authenticated;
-      var sessionStarted = this.state.sessionStarted;
-      var sessionExpires = this.state.sessionExpires;
-      var logoutMessage = this.state.logoutMessage;
-
-      // returning node 
-      if (!authenticated) {
-        return (
-          <div className="container jumbotron">
-          <h2>{logoutMessage}</h2>
-          <h2>Login</h2>
-            username: <input className="form-control log-in-form" ref="username" type = "text"/>
-            password: <input className="form-control log-in-form" ref="password" type = "password"/><br />
-            <button className="btn btn-primary" onClick={this.handleLogin}>Login</button>
-          </div>
-        );
-      } else {
-        return (
-          <div className="container jumbotron">
-            <Dashboard message = {username} sessionStarted = {sessionStarted} sessionExpires = {sessionExpires}/>
-            <button className="btn btn-primary" onClick={this.handleLogout}>Logout</button>
-          </div>
-        );
-      }
-    }
-  });
-
-
-  // defining the sub-component to show when the session begins
-  var Dashboard = React.createClass({
-    // validation 
-    propTypes: function() {
-      message: React.PropTypes.string.isRequired
-    },
-    // setting default prop
-    getDefaultProps: function() {
-      return {
-        // TODO: retrieve username from DB and update the message
-        message: "Welcome" + "userName",
-        sessionStarted: "haha",
-        sessionExpires: "hoho"
-      }
-    },
-
-    render: function() {
-      return (
-        <div>
-          <h2>Welcome {this.props.message}!</h2>
-          <div> Your session started: {this.props.sessionStarted} </div>
-          <div> Your session expires: {this.props.sessionExpires} </div>
-        </div>
+      // render the component 
+      var reactComponent = React.render(
+        <AppComponent/>,
+        // defining the container for the component
+        document.getElementById('app'),
+        // function invoked after rendering is complete 
+        function() {
+          console.log("rendering completed")
+        }
       );
-    }
-  });
-
-  // render the component 
-  var reactComponent = React.render(
-    <AppComponent/>,
-    // defining the container for the component
-    document.getElementById('app'),
-    // function invoked after rendering is complete 
-    function() {
-      console.log("rendering completed")
-    }
-  );
-
-  </script>
-</body>
+    </script>
+  </body>
 </html>
